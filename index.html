@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analisador de Tipo de Arquivo</title>
+  <!-- Bootstrap 5 CSS via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- CSS Personalizado -->
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">📁 Analisador de Tipo de Arquivo</h1>
+    
+    <!-- Campo de Seleção de Arquivos -->
+    <div class="mb-3">
+      <label for="fileInput" class="form-label">Selecionar Arquivo(s)</label>
+      <input class="form-control" type="file" id="fileInput" multiple>
+    </div>
+    
+    <!-- Botão de Análise -->
+    <button id="analyzeBtn" class="btn btn-primary w-100 mb-4">🔍 Analisar Arquivo(s)</button>
+    
+    <!-- Indicador de Carregamento -->
+    <div id="loading" class="text-center my-3" style="display: none;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Analisando...</span>
+      </div>
+      <p>Analisando arquivos, por favor aguarde...</p>
+    </div>
+    
+    <!-- Barra de Progresso -->
+    <div id="progressContainer" class="progress mb-4" style="display: none;">
+      <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+    </div>
+    
+    <!-- Barra de Busca -->
+    <div class="mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="🔍 Buscar por nome do arquivo...">
+    </div>
+    
+    <!-- Tabela de Resultados -->
+    <div class="mt-4">
+      <h2>📊 Resultados da Análise</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col"><a href="#" class="text-white text-decoration-none" data-sort="fileName">📁 Nome do Arquivo</a></th>
+              <th scope="col"><a href="#" class="text-white text-decoration-none" data-sort="mimeType">📝 Tipo (MIME)</a></th>
+              <th scope="col"><a href="#" class="text-white text-decoration-none" data-sort="realExtension">🔗 Extensão Real</a></th>
+              <th scope="col"><a href="#" class="text-white text-decoration-none" data-sort="sizeKB">📏 Tamanho (KB)</a></th>
+              <th scope="col">✅ Verificação de Extensão</th>
+            </tr>
+          </thead>
+          <tbody id="resultsTable">
+            <!-- Resultados serão adicionados aqui -->
+          </tbody>
+        </table>
+      </div>
+      <!-- Botão de Exportação -->
+      <button id="exportBtn" class="btn btn-success mt-3" disabled>💾 Exportar Resultados (CSV)</button>
+    </div>
+  </div>
+
+  <!-- Modal para Erros Detalhados -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="errorModalLabel">⚠️ Erro na Análise</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body" id="errorModalBody">
+          <!-- Mensagem de erro será inserida aqui -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Importação das Bibliotecas via Skypack CDN -->
+  <script type="module" src="script.js"></script>
+
+  <!-- Bootstrap 5 JS e dependências via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
